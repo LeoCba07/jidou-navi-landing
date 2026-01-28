@@ -310,14 +310,18 @@ html, body {
     background: var(--color-text);
 }
 
-/* Hide side screenshots on very small screens */
+/* Smaller phones on mobile but show all three */
 @media (max-width: 600px) {
-    .phone-mockup:not(.featured) {
-        display: none;
+    .phone-mockup {
+        width: 70px;
     }
 
     .phone-mockup.featured {
-        width: 180px;
+        width: 100px;
+    }
+
+    .screenshots {
+        gap: var(--spacing-xs);
     }
 }
 
