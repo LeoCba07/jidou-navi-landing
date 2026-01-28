@@ -49,20 +49,11 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title">
-                    Discover Japan, one<br>
-                    <span class="highlight">vending machine</span> at a time
-                </h1>
-                <p class="hero-subtitle">
-                    Find weird, rare, and unique vending machines across Japan.
-                    Collect badges and join a community of curious adventurers.
-                </p>
-
-                <!-- App Screenshots -->
+    <!-- Hero Section - Full viewport, two columns -->
+    <main class="main-fullscreen">
+        <section class="hero-split">
+            <!-- Left: Phone Screenshots -->
+            <div class="hero-left">
                 <div class="screenshots">
                     <div class="phone-mockup">
                         <img src="/assets/zoom-medium.png" alt="JidouNavi map view" class="screenshot">
@@ -74,75 +65,36 @@
                         <img src="/assets/profile.png" alt="JidouNavi profile" class="screenshot">
                     </div>
                 </div>
+            </div>
+
+            <!-- Right: Title + Form -->
+            <div class="hero-right">
+                <h1 class="hero-title">
+                    Discover Japan, one<br>
+                    <span class="highlight">vending machine</span> at a time
+                </h1>
+                <p class="hero-subtitle">
+                    Find weird, rare, and unique vending machines across Japan.
+                    Collect badges and join a community of curious adventurers.
+                </p>
 
                 <!-- CTA Section -->
                 <div id="cta-section" class="cta-section">
                     <!-- Rendered by JavaScript -->
                 </div>
-            </div>
-        </section>
 
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                        </div>
-                        <h3>Find Rare Machines</h3>
-                        <p>Weird snacks, love letters addressed to onii-chan and all the stuff in between.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="8" r="7"/>
-                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
-                            </svg>
-                        </div>
-                        <h3>Collect Badges</h3>
-                        <p>Flex your finds to your friends.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                        </div>
-                        <h3>Community-Powered</h3>
-                        <p>Add machines, verify status and help build the ultimate vending map.</p>
-                    </div>
-                </div>
+                <!-- Footer Links -->
+                <nav class="footer-links-inline">
+                    <a href="/privacy.html">Privacy</a>
+                    <a href="/terms.html">Terms</a>
+                    <a href="mailto:jidou.navi@gmail.com">Contact</a>
+                </nav>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="/assets/icon.png" alt="JidouNavi" class="footer-logo">
-                    <span>JidouNavi</span>
-                </div>
-                <nav class="footer-links">
-                    <a href="/privacy">Privacy</a>
-                    <a href="/terms">Terms</a>
-                    <a href="mailto:leandrotrabucco@gmail.com">Contact</a>
-                </nav>
-            </div>
-            <p class="footer-copyright">Built by two devs who love vending machines.</p>
-        </div>
-    </footer>
-
     <!-- Supabase Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
     <!-- App Logic -->
     <script src="script.js"></script>

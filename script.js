@@ -10,13 +10,13 @@ const CONFIG = {
     supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrcnNvdmVqdGxicG96bmJ2YmhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY3MzA4MzYsImV4cCI6MjA4MjMwNjgzNn0.-QS9IXNIX4gpQxkir09QMdMYWVBgvjTBpFHBsuDSOV8',
 };
 
-let supabase = null;
+let supabaseClient = null;
 
 // Initialize Supabase client
 function initSupabase() {
     try {
         if (window.supabase && window.supabase.createClient) {
-            supabase = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+            supabaseClient = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
         }
     } catch (e) {
         console.error('Supabase init error:', e);
@@ -136,8 +136,8 @@ async function handleSubmit(e) {
     btn.textContent = 'Submitting...';
 
     try {
-        if (supabase) {
-            const { error } = await supabase.from('waitlist').insert([{ email, platform, source: 'landing' }]);
+        if (supabaseClient) {
+            const { error } = await supabaseClient.from('waitlist').insert([{ email, platform, source: 'landing' }]);
             if (error && error.code === '23505') {
                 showMsg(msg, "You're already on the list!", 'success');
             } else if (error) {
