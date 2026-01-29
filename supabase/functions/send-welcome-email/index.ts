@@ -33,12 +33,22 @@ serve(async (req) => {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <style>
+    :root { color-scheme: light; }
+    @media (prefers-color-scheme: dark) {
+      .body-bg { background-color: #FDF3E7 !important; }
+      .card-bg { background-color: #ffffff !important; }
+      .footer-bg { background-color: #f9f5f0 !important; }
+    }
+  </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #FDF3E7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #FDF3E7; padding: 40px 20px;">
+<body class="body-bg" style="margin: 0; padding: 0; background-color: #FDF3E7 !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" class="body-bg" style="background-color: #FDF3E7 !important; padding: 40px 20px;">
     <tr>
       <td align="center">
-        <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 500px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);">
+        <table width="100%" cellpadding="0" cellspacing="0" class="card-bg" style="max-width: 500px; background-color: #ffffff !important; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);">
           <!-- Header with inline logo and title -->
           <tr>
             <td align="center" style="padding: 40px 40px 30px; text-align: center;">
@@ -76,7 +86,7 @@ serve(async (req) => {
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="padding: 20px 40px; background-color: #f9f5f0; border-top: 1px solid #E8DDD0;">
+            <td class="footer-bg" style="padding: 20px 40px; background-color: #f9f5f0 !important; border-top: 1px solid #E8DDD0;">
               <p style="margin: 0 0 8px; font-size: 12px; color: #8A8A8A; text-align: center;">
                 <a href="${SITE_URL}/privacy.html" style="color: #8A8A8A; text-decoration: none;">Privacy</a>
                 <span style="margin: 0 6px;">·</span>
@@ -85,6 +95,9 @@ serve(async (req) => {
                 <a href="mailto:jidou.navi@gmail.com" style="color: #8A8A8A; text-decoration: none;">Contact</a>
                 <span style="margin: 0 6px;">·</span>
                 <a href="${unsubscribeUrl}" style="color: #8A8A8A; text-decoration: none;">Unsubscribe</a>
+              </p>
+              <p style="margin: 0 0 6px; font-size: 11px; color: #A0A0A0; text-align: center;">
+                Questions? Reach us at <a href="mailto:jidou.navi@gmail.com" style="color: #A0A0A0;">jidou.navi@gmail.com</a>
               </p>
               <p style="margin: 0; font-size: 11px; color: #A0A0A0; text-align: center;">
                 © 2026 JidouNavi
@@ -99,6 +112,27 @@ serve(async (req) => {
 </html>
     `.trim();
 
+    const emailText = `
+Ready to explore?
+
+Thanks for joining the JidouNavi waitlist for ${platformDisplay}. We're building something special for vending machine hunters like you.
+
+We'll email you once — on launch day. That's it.
+
+Want to stay in the loop? Follow us on Instagram: https://instagram.com/jidou.navi
+
+See you soon,
+The JidouNavi Team
+
+---
+Privacy: ${SITE_URL}/privacy.html
+Terms: ${SITE_URL}/terms.html
+Contact: jidou.navi@gmail.com
+Unsubscribe: ${unsubscribeUrl}
+
+© 2026 JidouNavi
+    `.trim();
+
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -109,8 +143,9 @@ serve(async (req) => {
         from: "JidouNavi <noreply@jidou-navi.app>",
         reply_to: "jidou.navi@gmail.com",
         to: [email],
-        subject: "Welcome to JidouNavi! You're on the hunt 🎯",
+        subject: "Welcome to JidouNavi!",
         html: emailHtml,
+        text: emailText,
       }),
     });
 
