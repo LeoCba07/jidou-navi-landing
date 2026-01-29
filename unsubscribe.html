@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe - JidouNavi</title>
+    <link rel="icon" type="image/png" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FDF3E7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2B2B2B;
+            margin-bottom: 12px;
+        }
+        p {
+            color: #5A5A5A;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #FF4B4B;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #E63E3E;
+        }
+        .btn:disabled {
+            background: #8A8A8A;
+            cursor: not-allowed;
+        }
+        .status {
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+        .status.success {
+            background: rgba(0, 184, 148, 0.1);
+            color: #00B894;
+        }
+        .status.error {
+            background: rgba(214, 48, 49, 0.1);
+            color: #D63031;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #8A8A8A;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            color: #FF4B4B;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/assets/icon.png" alt="JidouNavi" class="logo">
+
+        <div id="confirm-view">
+            <h1>Unsubscribe?</h1>
+            <p>Are you sure you want to unsubscribe from JidouNavi updates? You'll miss out on knowing when we launch.</p>
+            <button class="btn btn-primary" id="unsubscribe-btn">Yes, unsubscribe me</button>
+        </div>
+
+        <div id="result-view" class="hidden">
+            <h1 id="result-title"></h1>
+            <p id="result-message"></p>
+        </div>
+
+        <a href="/" class="back-link">Back to JidouNavi</a>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://xkrsovejtlbpoznbvbha.supabase.co';
+
+        const confirmView = document.getElementById('confirm-view');
+        const resultView = document.getElementById('result-view');
+        const unsubscribeBtn = document.getElementById('unsubscribe-btn');
+        const resultTitle = document.getElementById('result-title');
+        const resultMessage = document.getElementById('result-message');
+
+        // Get token from URL
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+
+        if (!token) {
+            confirmView.classList.add('hidden');
+            resultView.classList.remove('hidden');
+            resultTitle.textContent = 'Invalid Link';
+            resultMessage.textContent = 'This unsubscribe link is invalid or has expired.';
+        }
+
+        unsubscribeBtn.addEventListener('click', async () => {
+            unsubscribeBtn.disabled = true;
+            unsubscribeBtn.textContent = 'Processing...';
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/unsubscribe`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token })
+                });
+
+                const data = await res.json();
+
+                confirmView.classList.add('hidden');
+                resultView.classList.remove('hidden');
+
+                if (res.ok) {
+                    resultTitle.textContent = 'Unsubscribed';
+                    resultMessage.textContent = "You've been unsubscribed. We're sad to see you go, but we understand. You can always sign up again if you change your mind!";
+                } else {
+                    resultTitle.textContent = 'Error';
+                    resultMessage.textContent = data.error || 'Something went wrong. Please try again.';
+                }
+            } catch (err) {
+                confirmView.classList.add('hidden');
+                resultView.classList.remove('hidden');
+                resultTitle.textContent = 'Error';
+                resultMessage.textContent = 'Something went wrong. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>

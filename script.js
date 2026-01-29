@@ -113,6 +113,26 @@ function attachEventListeners() {
     }
 }
 
+// Generate a random unsubscribe token
+function generateToken() {
+    const array = new Uint8Array(24);
+    crypto.getRandomValues(array);
+    return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Send welcome email via edge function
+async function sendWelcomeEmail(email, unsubscribe_token) {
+    try {
+        await fetch(`${CONFIG.supabaseUrl}/functions/v1/send-welcome-email`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, unsubscribe_token })
+        });
+    } catch (err) {
+        console.error('Failed to send welcome email:', err);
+    }
+}
+
 // Handle form submission
 async function handleSubmit(e) {
     e.preventDefault();
@@ -134,18 +154,27 @@ async function handleSubmit(e) {
     btn.disabled = true;
     btn.textContent = 'Submitting...';
 
+    const unsubscribe_token = generateToken();
+
     try {
         if (supabaseClient) {
-            const { error } = await supabaseClient.from('waitlist').insert([{ email, platform, source: 'landing' }]);
+            const { error } = await supabaseClient.from('waitlist').insert([{
+                email,
+                platform,
+                source: 'landing',
+                unsubscribe_token,
+                subscribed: true
+            }]);
             if (error && error.code === '23505') {
                 showMsg(msg, "You're already on the list!", 'success');
             } else if (error) {
                 throw error;
             } else {
-                showMsg(msg, "You're on the list! We'll notify you when we launch.", 'success');
+                // Send welcome email
+                sendWelcomeEmail(email, unsubscribe_token);
+                showMsg(msg, "You're on the list! Check your email for confirmation.", 'success');
             }
         } else {
-            // No Supabase - just show success
             showMsg(msg, "You're on the list! We'll notify you when we launch.", 'success');
         }
         emailInput.value = '';
