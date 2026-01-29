@@ -122,12 +122,15 @@ function generateToken() {
 }
 
 // Send welcome email via edge function
-async function sendWelcomeEmail(email, unsubscribe_token) {
+async function sendWelcomeEmail(email, unsubscribe_token, platform) {
     try {
         await fetch(`${CONFIG.supabaseUrl}/functions/v1/send-welcome-email`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, unsubscribe_token })
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${CONFIG.supabaseAnonKey}`
+            },
+            body: JSON.stringify({ email, unsubscribe_token, platform })
         });
     } catch (err) {
         console.error('Failed to send welcome email:', err);
@@ -171,8 +174,8 @@ async function handleSubmit(e) {
             } else if (error) {
                 throw error;
             } else {
-                // Send welcome email
-                sendWelcomeEmail(email, unsubscribe_token);
+                // Send welcome email with platform
+                sendWelcomeEmail(email, unsubscribe_token, platform);
                 showMsg(msg, "You're on the list! Check your email for confirmation.", 'success');
             }
         } else {
