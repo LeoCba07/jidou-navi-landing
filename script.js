@@ -70,7 +70,7 @@ function renderCTA() {
                 <p class="cta-subtitle">Be the first to discover Japan's vending machines</p>
                 <div class="platform-selector">
                     <button type="button" class="platform-btn active" data-platform="android">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.342l1.473-2.546c.082-.142.037-.322-.105-.404-.142-.082-.322-.037-.404.105l-1.49 2.578c-1.138-.52-2.414-.81-3.77-.81s-2.633.29-3.771.81L8.967 12.5c-.082-.142-.262-.187-.404-.105-.142.082-.187.262-.105.404l1.473 2.545C7.107 16.573 5.285 19.174 5 22h14c-.285-2.826-2.107-5.427-4.977-6.658zm-6.523 3.66c-.345 0-.625-.28-.625-.625s.28-.625.625-.625.625.28.625.625-.28.625-.625.625zm7 0c-.345 0-.625-.28-.625-.625s.28-.625.625-.625.625.28.625.625-.28.625-.625.625z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
                         Android
                     </button>
                     <button type="button" class="platform-btn" data-platform="ios">
