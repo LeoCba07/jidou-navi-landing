@@ -1,6 +1,6 @@
 # JidouNavi Landing Page
 
-SEO-optimized landing page for JidouNavi with device-aware CTAs and waitlist integration.
+SEO-optimized landing page for JidouNavi with waitlist integration.
 
 ## Stack
 
@@ -11,7 +11,6 @@ SEO-optimized landing page for JidouNavi with device-aware CTAs and waitlist int
 
 ## Features
 
-- Device detection (Android/iOS/Desktop)
 - Platform-specific CTAs based on launch state
 - Waitlist email collection with platform segmentation
 - Mobile-first responsive design
