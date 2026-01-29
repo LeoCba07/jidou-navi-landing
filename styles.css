@@ -163,13 +163,13 @@ html, body {
 }
 
 .brand-icon {
-    width: 72px;
-    height: 72px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
 
 .brand-name {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-4xl);
     font-weight: 700;
     color: var(--color-text);
 }
@@ -269,12 +269,12 @@ html, body {
     }
 
     .brand-icon {
-        width: 80px;
-        height: 80px;
+        width: 88px;
+        height: 88px;
     }
 
     .brand-name {
-        font-size: var(--font-size-4xl);
+        font-size: 3rem;
     }
 
     .footer-links-inline a {
@@ -323,18 +323,20 @@ html, body {
     background: var(--color-text);
 }
 
-/* Smaller phones on mobile but show all three */
+/* Phones on mobile - show all three */
 @media (max-width: 600px) {
     .phone-mockup {
-        width: 115px;
+        width: 98px;
+        transform: scale(0.95);
+        opacity: 0.92;
     }
 
     .phone-mockup.featured {
-        width: 140px;
+        width: 115px;
     }
 
     .screenshots {
-        gap: var(--spacing-xs);
+        gap: 6px;
     }
 }
 
@@ -427,8 +429,9 @@ html, body {
 
 .platform-btn.active {
     border-color: var(--color-primary);
-    background: rgba(255, 107, 107, 0.05);
+    background: rgba(255, 75, 75, 0.15);
     color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 75, 75, 0.1);
 }
 
 .platform-btn svg {
@@ -452,12 +455,19 @@ html, body {
     font-size: var(--font-size-base);
     color: var(--color-text);
     background: #ffffff;
-    transition: border-color var(--transition-fast);
+    transition: all var(--transition-fast);
+    cursor: text;
+}
+
+.email-input:hover {
+    border-color: var(--color-text-muted);
+    background: #fafafa;
 }
 
 .email-input:focus {
     outline: none;
     border-color: var(--color-primary);
+    background: #ffffff;
 }
 
 .email-input::placeholder {
@@ -509,12 +519,21 @@ html, body {
     }
 }
 
+/* Form Disclaimer */
+.form-disclaimer {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-sm);
+}
+
 /* Form Messages */
 .form-message {
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
     text-align: center;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
 }
 
 .form-message.success {
