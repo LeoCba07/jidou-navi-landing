@@ -23,6 +23,29 @@ function initSupabase() {
     }
 }
 
+// Fetch waitlist count from Supabase
+async function loadWaitlistCount() {
+    const el = document.getElementById('waitlist-count');
+    if (!el || !supabaseClient) return;
+
+    try {
+        const { data, error } = await supabaseClient
+            .from('waitlist_public_stats') // ✅ VIEW
+            .select('total')
+            .single();
+
+        if (error || !data || typeof data.total !== 'number' || data.total === 0) return;
+
+        const rounded = Math.ceil(data.total / 10) * 10;
+        el.textContent = `Currently ${rounded}+ people on the waitlist 🚀`;
+    } catch {
+        // silent on purpose
+    }
+}
+
+
+
+
 // Render the CTA section
 function renderCTA() {
     const ctaSection = document.getElementById('cta-section');
@@ -83,12 +106,14 @@ function renderCTA() {
                     <button type="submit" class="submit-btn">Notify Me</button>
                 </form>
                 <p class="form-disclaimer">One email. Launch day. That's it.</p>
+                <p class="waitlist-count" id="waitlist-count"></p>
                 <div id="form-message"></div>
             `;
         }
 
         ctaSection.innerHTML = html;
         attachEventListeners();
+        loadWaitlistCount();
     } catch (e) {
         console.error('Render error:', e);
         ctaSection.innerHTML = '<p>Error loading form. Please refresh the page.</p>';

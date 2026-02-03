@@ -387,6 +387,23 @@ html, body {
     margin-bottom: var(--spacing-md);
 }
 
+/* Waitlist Count */
+.waitlist-count {
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@media (min-width: 900px) {
+    .waitlist-count {
+        text-align: left;
+    }
+}
+
 @media (min-width: 900px) {
     .cta-title {
         font-size: var(--font-size-lg);
@@ -594,69 +611,6 @@ html, body {
     font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-md);
-}
-
-/* ================================
-   Features Section
-   ================================ */
-.features {
-    padding: var(--spacing-3xl) 0;
-    background: var(--color-surface);
-}
-
-.section-title {
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: var(--spacing-2xl);
-    color: var(--color-text);
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
-}
-
-@media (min-width: 768px) {
-    .feature-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.feature-card {
-    text-align: center;
-    padding: var(--spacing-lg);
-}
-
-.feature-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto var(--spacing-lg);
-    background: rgba(255, 107, 107, 0.1);
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.feature-icon svg {
-    width: 28px;
-    height: 28px;
-    color: var(--color-primary);
-}
-
-.feature-card h3 {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-text);
-}
-
-.feature-card p {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-    line-height: 1.7;
 }
 
 /* ================================
