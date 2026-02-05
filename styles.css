@@ -318,9 +318,6 @@ html, body {
 .screenshot {
     width: 100%;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
-    border: 3px solid var(--color-text);
-    background: var(--color-text);
 }
 
 /* Phones on mobile - show all three */
