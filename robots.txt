@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /unsubscribe
+
+Sitemap: https://jidou-navi.app/sitemap.xml
