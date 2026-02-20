@@ -192,7 +192,8 @@ async function handleSubmit(e) {
                 platform,
                 source: 'landing',
                 unsubscribe_token,
-                subscribed: true
+                subscribed: true,
+                lang: 'en'
             }]);
             if (error && error.code === '23505') {
                 showMsg(msg, "You're already on the list!", 'success');

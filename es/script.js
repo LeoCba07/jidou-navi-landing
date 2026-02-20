@@ -189,7 +189,8 @@ async function handleSubmit(e) {
                 platform,
                 source: 'landing',
                 unsubscribe_token,
-                subscribed: true
+                subscribed: true,
+                lang: 'es'
             }]);
             if (error && error.code === '23505') {
                 showMsg(msg, '¡Ya estás en la lista!', 'success');
