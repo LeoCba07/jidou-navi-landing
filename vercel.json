@@ -51,6 +51,14 @@
     {
       "source": "/terms",
       "destination": "/terms.html"
+    },
+    {
+      "source": "/es/privacy",
+      "destination": "/es/privacy.html"
+    },
+    {
+      "source": "/es/terms",
+      "destination": "/es/terms.html"
     }
   ],
   "trailingSlash": false

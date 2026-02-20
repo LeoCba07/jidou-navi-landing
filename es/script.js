@@ -1,5 +1,5 @@
 /**
- * JidouNavi Landing Page
+ * JidouNavi Landing Page (Spanish)
  */
 
 const CONFIG = {
@@ -30,21 +30,18 @@ async function loadWaitlistCount() {
 
     try {
         const { data, error } = await supabaseClient
-            .from('waitlist_public_stats') // ✅ VIEW
+            .from('waitlist_public_stats')
             .select('total')
             .single();
 
         if (error || !data || typeof data.total !== 'number' || data.total === 0) return;
 
         const rounded = Math.ceil(data.total / 10) * 10;
-        el.textContent = `Currently ${rounded}+ people on the waitlist 🚀`;
+        el.textContent = `Actualmente ${rounded}+ personas en la lista de espera 🚀`;
     } catch {
         // silent on purpose
     }
 }
-
-
-
 
 // Render the CTA section
 function renderCTA() {
@@ -59,7 +56,7 @@ function renderCTA() {
 
         if (CONFIG.launchState === 'both-live') {
             html = `
-                <h2 class="cta-title">Download now</h2>
+                <h2 class="cta-title">Descargar ahora</h2>
                 <div class="store-badges">
                     <a href="${CONFIG.appStoreUrl}" class="store-badge" target="_blank" rel="noopener">
                         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="App Store">
@@ -71,25 +68,25 @@ function renderCTA() {
             `;
         } else if (CONFIG.launchState === 'android-live') {
             html = `
-                <h2 class="cta-title">Available on Android!</h2>
+                <h2 class="cta-title">¡Disponible en Android!</h2>
                 <div class="store-badges">
                     <a href="${CONFIG.playStoreUrl}" class="store-badge" target="_blank" rel="noopener">
                         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Play Store">
                     </a>
                 </div>
                 <div class="ios-waitlist">
-                    <p class="ios-waitlist-title">Coming soon to iOS</p>
+                    <p class="ios-waitlist-title">Próximamente en iOS</p>
                     <form class="waitlist-form" id="waitlist-form">
                         <input type="hidden" name="platform" value="ios">
-                        <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
-                        <button type="submit" class="submit-btn">Notify Me</button>
+                        <input type="email" name="email" class="email-input" placeholder="Ingresa tu correo" required>
+                        <button type="submit" class="submit-btn">Notificarme</button>
                     </form>
                     <div id="form-message"></div>
                 </div>
             `;
         } else {
             html = `
-                <h2 class="cta-title">Be first to explore!</h2>
+                <h2 class="cta-title">¡Sé el primero en explorar!</h2>
                 <div class="platform-selector">
                     <button type="button" class="platform-btn active" data-platform="android">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
@@ -102,10 +99,10 @@ function renderCTA() {
                 </div>
                 <form class="waitlist-form" id="waitlist-form">
                     <input type="hidden" name="platform" value="android">
-                    <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
-                    <button type="submit" class="submit-btn">Notify Me</button>
+                    <input type="email" name="email" class="email-input" placeholder="Ingresa tu correo" required>
+                    <button type="submit" class="submit-btn">Notificarme</button>
                 </form>
-                <p class="form-disclaimer">One email. Launch day. That's it.</p>
+                <p class="form-disclaimer">Un solo correo. El día del lanzamiento. Nada más.</p>
                 <p class="waitlist-count" id="waitlist-count"></p>
                 <div id="form-message"></div>
             `;
@@ -116,7 +113,7 @@ function renderCTA() {
         loadWaitlistCount();
     } catch (e) {
         console.error('Render error:', e);
-        ctaSection.innerHTML = '<p>Error loading form. Please refresh the page.</p>';
+        ctaSection.innerHTML = '<p>Error al cargar el formulario. Por favor, recarga la página.</p>';
     }
 }
 
@@ -155,7 +152,7 @@ async function sendWelcomeEmail(email, unsubscribe_token, platform) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${CONFIG.supabaseAnonKey}`
             },
-            body: JSON.stringify({ email, unsubscribe_token, platform, lang: 'en' })
+            body: JSON.stringify({ email, unsubscribe_token, platform, lang: 'es' })
         });
     } catch (err) {
         console.error('Failed to send welcome email:', err);
@@ -176,12 +173,12 @@ async function handleSubmit(e) {
     const platform = platformInput ? platformInput.value : 'unknown';
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showMsg(msg, 'Please enter a valid email', 'error');
+        showMsg(msg, 'Por favor, ingresa un correo válido', 'error');
         return;
     }
 
     btn.disabled = true;
-    btn.textContent = 'Submitting...';
+    btn.textContent = 'Enviando...';
 
     const unsubscribe_token = generateToken();
 
@@ -195,24 +192,24 @@ async function handleSubmit(e) {
                 subscribed: true
             }]);
             if (error && error.code === '23505') {
-                showMsg(msg, "You're already on the list!", 'success');
+                showMsg(msg, '¡Ya estás en la lista!', 'success');
             } else if (error) {
                 throw error;
             } else {
                 // Send welcome email with platform
                 sendWelcomeEmail(email, unsubscribe_token, platform);
-                showMsg(msg, "You're on the list! Check your email for confirmation.", 'success');
+                showMsg(msg, '¡Estás en la lista! Revisa tu correo para la confirmación.', 'success');
             }
         } else {
-            showMsg(msg, "You're on the list! We'll notify you when we launch.", 'success');
+            showMsg(msg, '¡Estás en la lista! Te notificaremos cuando lancemos.', 'success');
         }
         emailInput.value = '';
     } catch (err) {
         console.error('Submit error:', err);
-        showMsg(msg, 'Something went wrong. Try again.', 'error');
+        showMsg(msg, 'Algo salió mal. Inténtalo de nuevo.', 'error');
     } finally {
         btn.disabled = false;
-        btn.textContent = 'Notify Me';
+        btn.textContent = 'Notificarme';
     }
 }
 

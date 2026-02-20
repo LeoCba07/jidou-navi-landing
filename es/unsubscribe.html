@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unsubscribe - JidouNavi</title>
+    <title>Cancelar Suscripción - JidouNavi</title>
     <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 
@@ -134,15 +134,15 @@
 </head>
 <body>
     <!-- Language Switcher -->
-    <a href="/es/unsubscribe.html" class="lang-switcher" aria-label="Cambiar a español">ES</a>
+    <a href="/unsubscribe.html" class="lang-switcher" aria-label="Switch to English">EN</a>
 
     <div class="container">
         <img src="/assets/icon.png" alt="JidouNavi" class="logo">
 
         <div id="confirm-view">
-            <h1>Unsubscribe?</h1>
-            <p>Are you sure you want to unsubscribe from JidouNavi updates? You'll miss out on knowing when we launch.</p>
-            <button class="btn btn-primary" id="unsubscribe-btn">Yes, unsubscribe me</button>
+            <h1>¿Cancelar suscripción?</h1>
+            <p>¿Estás seguro de que quieres cancelar tu suscripción a las actualizaciones de JidouNavi? Te perderás saber cuándo lanzamos.</p>
+            <button class="btn btn-primary" id="unsubscribe-btn">Sí, cancelar mi suscripción</button>
         </div>
 
         <div id="result-view" class="hidden">
@@ -150,7 +150,7 @@
             <p id="result-message"></p>
         </div>
 
-        <a href="/" class="back-link">Back to JidouNavi</a>
+        <a href="/es/" class="back-link">Volver a JidouNavi</a>
     </div>
 
     <script>
@@ -170,13 +170,13 @@
         if (!token) {
             confirmView.classList.add('hidden');
             resultView.classList.remove('hidden');
-            resultTitle.textContent = 'Invalid Link';
-            resultMessage.textContent = 'This unsubscribe link is invalid or has expired.';
+            resultTitle.textContent = 'Enlace Inválido';
+            resultMessage.textContent = 'Este enlace de cancelación es inválido o ha expirado.';
         }
 
         unsubscribeBtn.addEventListener('click', async () => {
             unsubscribeBtn.disabled = true;
-            unsubscribeBtn.textContent = 'Processing...';
+            unsubscribeBtn.textContent = 'Procesando...';
 
             try {
                 const res = await fetch(`${SUPABASE_URL}/functions/v1/unsubscribe`, {
@@ -194,17 +194,17 @@
                 resultView.classList.remove('hidden');
 
                 if (res.ok) {
-                    resultTitle.textContent = 'Unsubscribed';
-                    resultMessage.textContent = "You've been unsubscribed. We're sad to see you go, but we understand. You can always sign up again if you change your mind!";
+                    resultTitle.textContent = 'Suscripción Cancelada';
+                    resultMessage.textContent = 'Tu suscripción ha sido cancelada. Nos da pena verte ir, pero lo entendemos. ¡Siempre puedes registrarte de nuevo si cambias de opinión!';
                 } else {
                     resultTitle.textContent = 'Error';
-                    resultMessage.textContent = data.error || 'Something went wrong. Please try again.';
+                    resultMessage.textContent = data.error || 'Algo salió mal. Por favor, inténtalo de nuevo.';
                 }
             } catch (err) {
                 confirmView.classList.add('hidden');
                 resultView.classList.remove('hidden');
                 resultTitle.textContent = 'Error';
-                resultMessage.textContent = 'Something went wrong. Please try again.';
+                resultMessage.textContent = 'Algo salió mal. Por favor, inténtalo de nuevo.';
             }
         });
     </script>
