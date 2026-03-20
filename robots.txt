@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /unsubscribe
 Disallow: /es/unsubscribe
+Disallow: /delete-account
+Disallow: /es/delete-account
 
 Sitemap: https://jidou-navi.app/sitemap.xml

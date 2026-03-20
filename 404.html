@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - JidouNavi</title>
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        html, body { height: 100%; overflow: auto; }
+        .error-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-code {
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--color-primary, #FF4B4B);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+        .error-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .error-message {
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 400px;
+        }
+        .error-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-primary, #FF4B4B);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        .error-link:hover {
+            opacity: 0.9;
+        }
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .header .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .header .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/assets/icon.png" alt="JidouNavi" class="logo-icon">
+                <span class="logo-text">JidouNavi</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="error-page">
+        <p class="error-code">404</p>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">The page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" class="error-link">
+            &larr; Back to Home
+        </a>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-copyright">&copy; 2025 JidouNavi. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

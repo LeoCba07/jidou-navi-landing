@@ -59,6 +59,14 @@
     {
       "source": "/es/terms",
       "destination": "/es/terms.html"
+    },
+    {
+      "source": "/delete-account",
+      "destination": "/delete-account.html"
+    },
+    {
+      "source": "/es/delete-account",
+      "destination": "/es/delete-account.html"
     }
   ],
   "trailingSlash": false
