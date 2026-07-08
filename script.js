@@ -29,14 +29,12 @@ async function loadWaitlistCount() {
     if (!el || !supabaseClient) return;
 
     try {
-        const { data, error } = await supabaseClient
-            .from('waitlist_public_stats') // ✅ VIEW
-            .select('total')
-            .single();
+        const { data, error } = await supabaseClient.rpc('waitlist_count');
 
-        if (error || !data || typeof data.total !== 'number' || data.total === 0) return;
+        const total = typeof data === 'string' ? parseInt(data, 10) : data;
+        if (error || typeof total !== 'number' || !total) return;
 
-        const rounded = Math.ceil(data.total / 10) * 10;
+        const rounded = Math.ceil(total / 10) * 10;
         el.textContent = `Currently ${rounded}+ people on the waitlist 🚀`;
     } catch {
         // silent on purpose
