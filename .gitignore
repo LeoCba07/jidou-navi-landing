@@ -26,3 +26,6 @@ build/
 assets/jidou*prd*
 assets/JidouNavi_PRD_v1.pdf
 assets/*.pdf
+
+# Supabase CLI local state
+supabase/.temp/
