@@ -19,8 +19,7 @@ _Last updated: 2026-07-08. Context: Google Play verification about to complete; 
 1. **Domain canonicalization mismatch** — `jidou-navi.app` 307-redirects to `www.`, but every canonical tag, hreflang, og:url, sitemap URL, and email link points at the apex. Google is told the canonical is a URL that redirects away.
    **Fix (5 min, no code):** Vercel → Project → Settings → Domains → set `jidou-navi.app` as primary (www redirects to apex). Confirm Search Console property covers the apex.
 
-2. **Launch-day email doesn't exist** — only `send-welcome-email` and `unsubscribe` functions exist. The promised "one email, launch day" needs a `send-launch-email` edge function: query `waitlist` where `subscribed = true`, segment by `lang` (EN/ES templates) and `platform`, include each user's `unsubscribe_token` link, add `List-Unsubscribe` header, batch slowly (Resend rate limits ~2 req/s). **Send a test to yourself in both languages first.**
-   Decision needed: send Android-launch email to iOS signups too ("iOS coming soon")? Recommendation: yes, one shared email with a note — the list is small (~37), splitting adds effort for nothing.
+2. ~~**Launch-day email doesn't exist**~~ — **built & deployed 2026-07-08**: `send-launch-email` edge function (EN/ES templates, per-user unsubscribe links, `List-Unsubscribe` headers, rate-limited, double-send-proof via `launch_email_sent_at`). Goes to ALL subscribed signups (iOS folks get an "iOS on the way" note). Gated by `ADMIN_SECRET` (stored in `.env.local`, gitignored, and set as a Supabase function secret). Test send verified. See "Sending the launch email" below.
 
 3. ~~**ES waitlist count 404**~~ — **fixed 2026-07-08**: `es/script.js` still queried the dropped `waitlist_public_stats` view (Supabase hardening in the main repo removed it); commit `4d30d2e` had only fixed the EN script. Now both use the `waitlist_count()` RPC. Needs push to deploy.
 
@@ -48,8 +47,36 @@ Once the Play Store listing is live:
 2. Add the Play Store link **statically in the HTML** too (both pages), and as `"installUrl"` in the JSON-LD — JS-off crawlers and AI assistants otherwise see no download path.
 3. Bump `lastmod` in `sitemap.xml`.
 4. Push → Vercel auto-deploys → verify live on a phone (EN and ES pages, form still works for iOS waitlist).
-5. Trigger `send-launch-email` (after the test send).
+5. Send the launch email (see below).
 6. Post the Instagram post. Done.
+
+### Sending the launch email
+
+One-time prep (before first real send): run the migration in the Supabase SQL editor
+(https://supabase.com/dashboard/project/xkrsovejtlbpoznbvbha/sql):
+
+```sql
+ALTER TABLE waitlist ADD COLUMN IF NOT EXISTS launch_email_sent_at TIMESTAMPTZ;
+```
+
+Test send (both language variants to one inbox, no DB writes) — `ADMIN_SECRET` is in `.env.local`:
+
+```bash
+source .env.local
+curl -X POST https://xkrsovejtlbpoznbvbha.supabase.co/functions/v1/send-launch-email \
+  -H "Authorization: Bearer <ANON_KEY from script.js>" \
+  -H "x-admin-secret: $ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"play_store_url":"<REAL_PLAY_URL>","test_email":"you@example.com"}'
+```
+
+Real send — same command **without** `test_email`:
+
+```bash
+  -d '{"play_store_url":"<REAL_PLAY_URL>"}'
+```
+
+Returns `{ sent, failed, failures }`. Safe to re-run: already-emailed rows are skipped via `launch_email_sent_at`. For the future iOS launch, the same function can be re-templated or the column reused after a reset.
 
 Optional, whenever: Product Hunt / Hacker News (Show HN) / r/sideproject post. If doing these, wait a few days after launch so the app is stable and has a review or two — these are one-shot channels.
 
