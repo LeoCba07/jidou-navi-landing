@@ -13,6 +13,9 @@ _Last updated: 2026-07-13 (originally 2026-07-08). Context: Google Play verifica
 - [ ] Optional, after a few stable days + a review or two: Product Hunt / Show HN / r/sideproject
 - [ ] Promote the Play release from open testing → Production track once vitals look clean (~1–2 weeks)
 - [ ] iOS someday → see section 3 (second waitlist email to `platform = 'ios'` signups is prepped)
+- [ ] Google Sign-In someday → full implementation sketch in the main repo,
+      `docs/TESTER_FEEDBACK_PLAN.md` Phase 2 (Google Cloud OAuth clients, Supabase provider,
+      `signInWithIdToken`, needs a new native build; on iOS would force Sign in with Apple too)
 - Cheap nice-to-haves if ever bothered: square icon crop for the welcome email, WebP hero screenshots
 
 ---
