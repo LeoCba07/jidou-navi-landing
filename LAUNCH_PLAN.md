@@ -1,6 +1,19 @@
 # JidouNavi Launch Plan & Site Audit
 
-_Last updated: 2026-07-08. Context: Google Play verification about to complete; production access expected within days. Goal is a **low-effort release** — ship it, send the waitlist email, one Instagram post, maybe PH/HN/Reddit. No ongoing marketing operation._
+> **STATUS: LAUNCHED 2026-07-13.** App live on Play open testing (versionCode 16), site
+> flipped to android-live with maker's note, domain canonicalization fixed (apex primary,
+> www 308s to it), legal pages updated (July 2026 dates + Sentry/GA disclosure), launch
+> email sent: 36/36 subscribed, 0 failed. Remaining below in "What's left".
+
+_Last updated: 2026-07-13 (originally 2026-07-08). Context: Google Play verification about to complete; production access expected within days. Goal is a **low-effort release** — ship it, send the waitlist email, one Instagram post, maybe PH/HN/Reddit. No ongoing marketing operation._
+
+## What's left (post-launch)
+
+- [ ] Instagram post (the one planned social action)
+- [ ] Optional, after a few stable days + a review or two: Product Hunt / Show HN / r/sideproject
+- [ ] Promote the Play release from open testing → Production track once vitals look clean (~1–2 weeks)
+- [ ] iOS someday → see section 3 (second waitlist email to `platform = 'ios'` signups is prepped)
+- Cheap nice-to-haves if ever bothered: square icon crop for the welcome email, WebP hero screenshots
 
 ---
 
