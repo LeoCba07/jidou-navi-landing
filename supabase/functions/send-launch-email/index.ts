@@ -25,13 +25,13 @@ function getEmailContent(lang: string, playStoreUrl: string, unsubscribeUrl: str
 
   const t = isEs
     ? {
-        subject: "¡Lo logramos! JidouNavi ya está en Android 🎉",
+        subject: "¡JidouNavi ya está disponible en Android! 🎉",
         heading: "¡Es el día del lanzamiento!",
-        body1: "Hace un tiempo nos dejaste tu correo y un poco de confianza. Hoy podemos devolvértela: JidouNavi ya está oficialmente en Google Play. Matias y yo construimos esta app de noche y en fines de semana, como dos amigos en Tokio que no podían seguir pasando de largo frente a máquinas expendedoras demasiado raras como para no compartirlas.",
-        body2: "Es pequeña, está hecha a mano, y cada máquina del mapa está ahí porque alguien como tú la encontró. Sal a cazar la primera — y si algo falla, cuéntanos por la opción Feedback dentro de la app. Leemos todo.",
+        body1: "Hace un tiempo nos dejaste tu correo y te uniste a nuestra lista de espera — gracias por tu confianza. Hoy el equipo de JidouNavi está orgulloso de anunciar que oficialmente estamos en Google Play. Casi 6 meses de desarrollo continuo, una incontable cantidad de tardes en cafés en Japón: dos amigos con el objetivo de construir una herramienta que localice a todas las máquinas expendedoras raras del país y te haga sentir en un juego.",
+        body2: "Sí, es pequeña. Encontrarás bugs y habrá cosas que mejorar con el tiempo, pero cada máquina que ya está ahí fue información recolectada a mano — y ahora necesitamos que tú salgas a cazar. Si te encuentras en Japón o tienes planeado visitarlo, danos una oportunidad: no te arrepentirás. Y lo que haya que mejorar, cuéntanos por la opción Feedback dentro de la app; estaremos atentos a todas sus voces.",
         cta: "Descargar en Google Play",
         iosNote: "¿Tienes iPhone? La versión para iOS está en camino — sigues en la lista y te avisaremos cuando llegue.",
-        signoff: "Con cariño desde Tokio,",
+        signoff: "Nos vemos explorando,",
         team: "Leandro y Matias · JidouNavi",
         privacy: "Privacidad",
         privacyUrl: `${SITE_URL}/es/privacy`,
@@ -42,13 +42,13 @@ function getEmailContent(lang: string, playStoreUrl: string, unsubscribeUrl: str
         questions: "¿Preguntas? Escríbenos a",
       }
     : {
-        subject: "We did it — JidouNavi is live on Android 🎉",
+        subject: "JidouNavi is live on Android! 🎉",
         heading: "It's launch day!",
-        body1: "A while back you left us your email and a little bit of trust. Today we get to pay it back: JidouNavi is officially on Google Play. Matias and I built this app on nights and weekends, as two friends in Tokyo who couldn't keep walking past vending machines too weird not to share.",
-        body2: "It's small, it's handmade, and every machine on the map is there because someone like you found it. Go hunt down your first one — and if anything breaks, tell us through the Feedback option in the app. We read everything.",
+        body1: "A while back you left us your email and joined our waitlist — thank you for trusting us. Today the JidouNavi team is proud to announce that we're officially on Google Play. Almost 6 months of continuous development, countless afternoons in cafés across Japan: two friends set on building a tool that tracks down every rare vending machine in the country and makes you feel like you're in a game.",
+        body2: "Yes, it's small. You'll find bugs, and there will be things to improve over time — but every machine already on the map was collected by hand, and now we need you out there hunting. If you're in Japan or planning a visit, give it a chance: you won't regret it. And whatever needs improving, tell us through the Feedback option in the app; we'll be listening to every voice.",
         cta: "Get it on Google Play",
         iosNote: "On iPhone? The iOS version is on the way — you're still on the list and we'll email you when it lands.",
-        signoff: "With love from Tokyo,",
+        signoff: "See you out there,",
         team: "Leandro & Matias · JidouNavi",
         privacy: "Privacy",
         privacyUrl: `${SITE_URL}/privacy`,
