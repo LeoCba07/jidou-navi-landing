@@ -3,8 +3,8 @@
  */
 
 const CONFIG = {
-    launchState: 'pre-launch', // 'pre-launch' | 'android-live' | 'both-live'
-    playStoreUrl: '',
+    launchState: 'android-live', // 'pre-launch' | 'android-live' | 'both-live'
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.jidounavi.app',
     appStoreUrl: '',
     supabaseUrl: 'https://xkrsovejtlbpoznbvbha.supabase.co',
     supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrcnNvdmVqdGxicG96bmJ2YmhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY3MzA4MzYsImV4cCI6MjA4MjMwNjgzNn0.-QS9IXNIX4gpQxkir09QMdMYWVBgvjTBpFHBsuDSOV8',

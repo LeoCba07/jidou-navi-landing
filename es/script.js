@@ -3,8 +3,8 @@
  */
 
 const CONFIG = {
-    launchState: 'pre-launch', // 'pre-launch' | 'android-live' | 'both-live'
-    playStoreUrl: '',
+    launchState: 'android-live', // 'pre-launch' | 'android-live' | 'both-live'
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.jidounavi.app',
     appStoreUrl: '',
     supabaseUrl: 'https://xkrsovejtlbpoznbvbha.supabase.co',
     supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrcnNvdmVqdGxicG96bmJ2YmhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY3MzA4MzYsImV4cCI6MjA4MjMwNjgzNn0.-QS9IXNIX4gpQxkir09QMdMYWVBgvjTBpFHBsuDSOV8',
@@ -60,7 +60,7 @@ function renderCTA() {
                         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="App Store">
                     </a>
                     <a href="${CONFIG.playStoreUrl}" class="store-badge" target="_blank" rel="noopener">
-                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Play Store">
+                        <img src="https://play.google.com/intl/es/badges/static/images/badges/es_badge_web_generic.png" alt="Play Store">
                     </a>
                 </div>
             `;
@@ -69,7 +69,7 @@ function renderCTA() {
                 <h2 class="cta-title">¡Disponible en Android!</h2>
                 <div class="store-badges">
                     <a href="${CONFIG.playStoreUrl}" class="store-badge" target="_blank" rel="noopener">
-                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Play Store">
+                        <img src="https://play.google.com/intl/es/badges/static/images/badges/es_badge_web_generic.png" alt="Play Store">
                     </a>
                 </div>
                 <div class="ios-waitlist">
