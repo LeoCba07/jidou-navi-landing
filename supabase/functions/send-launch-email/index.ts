@@ -25,13 +25,14 @@ function getEmailContent(lang: string, playStoreUrl: string, unsubscribeUrl: str
 
   const t = isEs
     ? {
-        subject: "¡JidouNavi ya está disponible en Android! 🎉",
+        subject: "¡Lo logramos! JidouNavi ya está en Android 🎉",
         heading: "¡Es el día del lanzamiento!",
-        body1: "JidouNavi ya está en Google Play. Las máquinas expendedoras más raras y sorprendentes de Japón te están esperando — ve a encontrar la primera.",
+        body1: "Hace un tiempo nos dejaste tu correo y un poco de confianza. Hoy podemos devolvértela: JidouNavi ya está oficialmente en Google Play. Matias y yo construimos esta app de noche y en fines de semana, como dos amigos en Tokio que no podían seguir pasando de largo frente a máquinas expendedoras demasiado raras como para no compartirlas.",
+        body2: "Es pequeña, está hecha a mano, y cada máquina del mapa está ahí porque alguien como tú la encontró. Sal a cazar la primera — y si algo falla, cuéntanos por la opción Feedback dentro de la app. Leemos todo.",
         cta: "Descargar en Google Play",
         iosNote: "¿Tienes iPhone? La versión para iOS está en camino — sigues en la lista y te avisaremos cuando llegue.",
-        signoff: "Nos vemos explorando,",
-        team: "El equipo de JidouNavi",
+        signoff: "Con cariño desde Tokio,",
+        team: "Leandro y Matias · JidouNavi",
         privacy: "Privacidad",
         privacyUrl: `${SITE_URL}/es/privacy`,
         terms: "Términos",
@@ -41,13 +42,14 @@ function getEmailContent(lang: string, playStoreUrl: string, unsubscribeUrl: str
         questions: "¿Preguntas? Escríbenos a",
       }
     : {
-        subject: "JidouNavi is live on Android! 🎉",
+        subject: "We did it — JidouNavi is live on Android 🎉",
         heading: "It's launch day!",
-        body1: "JidouNavi is now on Google Play. Japan's weirdest, rarest vending machines are waiting — go find your first one.",
+        body1: "A while back you left us your email and a little bit of trust. Today we get to pay it back: JidouNavi is officially on Google Play. Matias and I built this app on nights and weekends, as two friends in Tokyo who couldn't keep walking past vending machines too weird not to share.",
+        body2: "It's small, it's handmade, and every machine on the map is there because someone like you found it. Go hunt down your first one — and if anything breaks, tell us through the Feedback option in the app. We read everything.",
         cta: "Get it on Google Play",
         iosNote: "On iPhone? The iOS version is on the way — you're still on the list and we'll email you when it lands.",
-        signoff: "See you out there,",
-        team: "The JidouNavi Team",
+        signoff: "With love from Tokyo,",
+        team: "Leandro & Matias · JidouNavi",
         privacy: "Privacy",
         privacyUrl: `${SITE_URL}/privacy`,
         terms: "Terms",
@@ -96,8 +98,11 @@ function getEmailContent(lang: string, playStoreUrl: string, unsubscribeUrl: str
           <tr>
             <td style="padding: 0 40px 40px;">
               <h2 style="margin: 0 0 20px; font-size: 24px; font-weight: 600; color: #2B2B2B;">${t.heading}</h2>
-              <p style="margin: 0 0 28px; font-size: 16px; line-height: 1.6; color: #5A5A5A;">
+              <p style="margin: 0 0 20px; font-size: 16px; line-height: 1.6; color: #5A5A5A;">
                 ${t.body1}
+              </p>
+              <p style="margin: 0 0 28px; font-size: 16px; line-height: 1.6; color: #5A5A5A;">
+                ${t.body2}
               </p>
               <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 28px;">
                 <tr>
@@ -147,6 +152,8 @@ function getEmailContent(lang: string, playStoreUrl: string, unsubscribeUrl: str
 ${t.heading}
 
 ${t.body1}
+
+${t.body2}
 
 ${t.cta}: ${playStoreUrl}
 
