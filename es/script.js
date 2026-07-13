@@ -66,7 +66,7 @@ function renderCTA() {
             `;
         } else if (CONFIG.launchState === 'android-live') {
             html = `
-                <h2 class="cta-title">¡Disponible en Android!</h2>
+                <h2 class="cta-title">¡Recién lanzada en Android! Julio 2026 🎉</h2>
                 <div class="store-badges">
                     <a href="${CONFIG.playStoreUrl}" class="store-badge" target="_blank" rel="noopener">
                         <img src="https://play.google.com/intl/es/badges/static/images/badges/es_badge_web_generic.png" alt="Play Store">

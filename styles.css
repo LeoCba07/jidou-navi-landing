@@ -570,7 +570,7 @@ html, body {
 
 .store-badge {
     display: block;
-    height: 52px;
+    height: 76px;
     transition: transform var(--transition-fast);
 }
 
